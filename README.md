@@ -174,7 +174,15 @@ Renaming duplicate excel column names before importing,
                                                                                                            
                                                                                                            
     * remove row with duplicate name text;                                                                 
-                                                                                                           
+    proc datasets lib=work mt=view mt=data;         
+       delete __ren001 want;                          
+    run;quit;                                       
+                                                
+    /* need this if you rerun                       
+      NOTE: Deleting WORK.__REN001 (memtype=DATA).    
+      NOTE: Deleting WORK.WANT (memtype=VIEW).        
+    */                                              
+                                                                                                       
     data want;                                                                                             
       set wantPre(firstobs=2);                                                                             
     run;quit;                                                                                              
